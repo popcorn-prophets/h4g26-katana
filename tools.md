@@ -18,6 +18,14 @@ sudo gunzip /usr/share/wordlists/rockyou.txt.gz
 Python: `pipx install pwntools volatility3 angr; pip install pycryptodome sympy gmpy2 z3-solver flask-unsign xortool oletools ROPgadget`
 Other: `sudo gem install zsteg one_gadget`, stegseek (`.deb`), [pwndbg](https://github.com/pwndbg/pwndbg) (gdb plugin), [StegSolve](http://www.caesum.com/handbook/Stegsolve.jar) (jar), [CyberChef](https://github.com/gchq/CyberChef/releases) (zip), [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool) (git clone).
 
+## Aliases
+
+Source [`aliases.sh`](aliases.sh) to get short commands for the common moves (`triage`, `fg` flag-grep, `b64d`, `serve`, `cs`, `pcapstat`, XOR/binary helpers). Install:
+
+```sh
+echo "export FLAG=H4G; source $(pwd)/aliases.sh" >> ~/.zshrc
+```
+
 ## Cheatsheets
 
 Forgot a flag or syntax? Look it up locally instead of guessing. Install these too; most work offline.
