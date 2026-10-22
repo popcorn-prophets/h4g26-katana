@@ -18,6 +18,17 @@ sudo gunzip /usr/share/wordlists/rockyou.txt.gz
 Python: `pipx install pwntools volatility3 angr; pip install pycryptodome sympy gmpy2 z3-solver flask-unsign xortool oletools ROPgadget`
 Other: `sudo gem install zsteg one_gadget`, stegseek (`.deb`), [pwndbg](https://github.com/pwndbg/pwndbg) (gdb plugin), [StegSolve](http://www.caesum.com/handbook/Stegsolve.jar) (jar), [CyberChef](https://github.com/gchq/CyberChef/releases) (zip), [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool) (git clone).
 
+## Cheatsheets
+
+Forgot a flag or syntax? Look it up locally instead of guessing. Install these too; most work offline.
+
+| Tool | What it does | Install |
+| --- | --- | --- |
+| [tealdeer](https://github.com/tealdeer-rs/tealdeer) | Fast `tldr` client: short usage examples per command | `cargo install tealdeer` (then `tldr --update`) |
+| [navi](https://github.com/denisidoro/navi) | Interactive cheatsheet, pick a command and fill args | `cargo install navi` |
+| [eg](https://github.com/srsudar/eg) | Worked examples for common commands | `pipx install eg` |
+| [cheat.sh](https://cheat.sh/) | One-liner cheatsheets via curl; `curl cheat.sh/<cmd>` | online, or `cht.sh` client for offline |
+
 ## Triage
 
 | Tool | What it does |
