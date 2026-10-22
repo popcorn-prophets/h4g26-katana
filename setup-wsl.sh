@@ -26,6 +26,9 @@ for p in pwntools volatility3 ROPgadget; do
   pipx install "$p" 2>/dev/null || pipx upgrade "$p" 2>/dev/null || true
 done
 
+echo "[*] cargo tools (user)"
+command -v ouch >/dev/null 2>&1 || cargo install ouch 2>/dev/null || true
+
 echo "[*] gem tools (user)"
 gem install --user-install zsteg one_gadget 2>/dev/null || true
 

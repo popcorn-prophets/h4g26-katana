@@ -17,6 +17,8 @@ fg() { grep -rniE "${FLAG}\{" "${1:-.}"; }
 # fgx FILE: hunt the flag in a binary's strings
 fgx() { strings -n 4 "$1" | grep -iE "${FLAG}\{|flag|pass"; }
 
+ex() { ouch d "$@"; }                              # auto-extract any archive
+
 ## Encoding (pipe text in)
 alias b64d='base64 -d'
 alias b64e='base64 -w0'
