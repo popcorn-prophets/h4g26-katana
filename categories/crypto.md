@@ -6,7 +6,7 @@ Deep ref: [`ctf-crypto` skill](../.agents/skills/ctf-crypto/SKILL.md). Primers: 
 
 ## First moves
 
-1. Paste into [CyberChef](https://gchq.github.io/CyberChef/), run **Magic** (auto-detects encodings/ciphers).
+1. Paste into [CyberChef](https://gchq.github.io/CyberChef/), run **Magic** (auto-detects encodings/ciphers). Scripting it? [`chepy`](https://github.com/securisec/chepy) is CyberChef as a CLI/Python lib.
 2. Paste into [dCode cipher identifier](https://www.dcode.fr/cipher-identifier) for classical ciphers.
 3. Count the character set: only `A-Z` = classical; `A-Za-z0-9+/=` = base64; `0-9a-f` = hex; huge number = RSA.
 4. Hash-shaped? `hashid '<string>'`, then look it up ([crackstation](https://crackstation.net/)).

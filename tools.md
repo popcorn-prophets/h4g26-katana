@@ -92,6 +92,7 @@ Forgot a flag or syntax? Look it up locally instead of guessing. Install these t
 | `hashcat`                      | GPU hash cracking               |
 | `john`                         | CPU hash and password cracking  |
 | `xortool`                      | Recover repeating XOR keys      |
+| `chepy`                        | CyberChef as a CLI/Python lib; script decode chains offline |
 | pycryptodome / sympy / gmpy2   | Python crypto and number theory |
 
 ## File & disk forensics
