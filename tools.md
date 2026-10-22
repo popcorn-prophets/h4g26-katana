@@ -111,6 +111,7 @@ Forgot a flag or syntax? Look it up locally instead of guessing. Install these t
 | Tool | What it does |
 | --- | --- |
 | [Aperi'Solve](https://www.aperisolve.com/) | Runs zsteg, steghide, binwalk, bit planes in one pass |
+| [stego-toolkit](https://github.com/dominicbreuker/stego-toolkit) | Docker image with most stego tools preinstalled; `docker pull` before the event |
 | `zsteg` | LSB stego in PNG, BMP |
 | `steghide` | Hide/extract data in JPG, WAV (password) |
 | `stegseek` | Brute-force steghide passphrases |

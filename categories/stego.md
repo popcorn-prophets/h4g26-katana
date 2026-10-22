@@ -2,7 +2,7 @@
 
 _Steganography: data hidden inside an image, audio, or video so the file still looks normal. (Hidden in a filesystem, archive, or appended to a file is [file forensics](file-forensics.md).)_
 
-Deep ref: [`ctf-forensics` stego notes](../.agents/skills/ctf-forensics/steganography.md). Primers: [HackTricks Stego Tricks](https://book.hacktricks.wiki/en/stego/stego-tricks.html), [Aperi'Solve](https://www.aperisolve.com/) (runs many image tools at once).
+Deep ref: [`ctf-forensics` stego notes](../.agents/skills/ctf-forensics/steganography.md). Primers: [HackTricks Stego Tricks](https://book.hacktricks.wiki/en/stego/stego-tricks.html), [Aperi'Solve](https://www.aperisolve.com/) (runs many image tools at once), [stego-toolkit](https://github.com/dominicbreuker/stego-toolkit) (Docker image bundling most stego tools + helper scripts; pull before the event).
 
 ## First moves
 
