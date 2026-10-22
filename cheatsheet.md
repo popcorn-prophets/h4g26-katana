@@ -76,6 +76,28 @@ First: `capinfos`, Wireshark **Statistics > Protocol Hierarchy** (names the chal
 
 Extracted file is usually the real challenge → pivot to stego/crypto.
 
+## Misc → [`ctf-misc` skill](.agents/skills/ctf-misc/SKILL.md)
+
+In scope and a catch-all. If it fits no other category, it's here. First: `file`, `xxd | head`, check charset, check byte length vs visible length.
+
+| Seeing | Try |
+| --- | --- |
+| `A-Z2-7=` / base58 / base85 / dots-dashes | base32/58/85, Morse — CyberChef Magic (intensive) chains layers |
+| Geometric symbols / adjacent-key gibberish | Pigpen, keyboard-shift — [dCode identifier](https://www.dcode.fr/cipher-identifier) |
+| CSV/numeric column, values 48–126 | ASCII codes → `chr(int(x))`; CyberChef "From Decimal" |
+| List of floats | raw bytes → `struct.pack('>f', x)` per value, decode |
+| Text looks normal but byte length too long | Unicode stego → variation selectors `U+E0100+` / tag block `U+E0000+`; subtract offset. Detect `[hex(ord(c)) for c in text]` |
+| CJK mojibake, "translate"/"endian" | UTF-16 endian swap: `s.encode('utf-16-be').decode('utf-16-le')` |
+| QR / barcode | `zbarimg`; MaxiCode → zxing; repair finder squares in GIMP |
+| `python3 -c`-style prompt, restricted input | pyjail → `().__class__.__base__...`, `''.join(['fl','ag'])`, walrus `(x:="...")` |
+| Restricted/rbash shell | bashjail → `HISTFILE=/flag bash; history`, `bash -v flag`, `${IFS}`, `/bin/sh` paths |
+| "guess the number/word" oracle (length/compare/edit distance) | binary search; Levenshtein oracle → length then per-char |
+| Key/boolean/constraint validation | Z3 → model each constraint, `s.check()`, read model |
+| Odd DNS (ECS, NSEC, IXFR, rebinding, long subdomains) | see [misc dns notes](.agents/skills/ctf-misc/dns.md) / network DNS exfil |
+| Shell on a box, need root | `sudo -l`, `find / -perm -4000 2>/dev/null` + [GTFObins](https://gtfobins.github.io/); `docker` group = instant root |
+| MAC = `hash(secret‖msg)`, known msg+hash | length extension (`hlextend`) — works on MD5/SHA1/SHA256, **not** HMAC |
+| Audio tones / noise | spectrogram (`sox ... -n spectrogram`), DTMF, SSTV (`qsstv`), Morse on one channel |
+
 ## Crypto & encoding → [note](categories/crypto.md)
 
 Identify before attacking: CyberChef Magic, [dCode](https://www.dcode.fr/). Charset tells you: `A-Z` classical, `A-Za-z0-9+/=` base64, `0-9a-f` hex, huge int RSA. `H4G{` is the crib for XOR/shift/key.
@@ -158,5 +180,6 @@ Fingerprint the stack (`Server`, `X-Powered-By`, version strings), match a versi
 - Flags hide in metadata, bios, alt text, TXT records, slack space, old snapshots — not the obvious spot.
 - One Google Doc per challenge: commands, output, dead ends. Keep it transferable.
 - Stay inside the authorized environment ([conduct](event-briefer.md#v-code-of-conduct)).
+- Platform is likely CTFd: submit through the site; API navigation (token auth, challenge list) in [ctfd-navigation](.agents/skills/ctf-misc/ctfd-navigation.md).
 </content>
 </invoke>

@@ -4,10 +4,11 @@ CTF playbook for Hack4Gov 2026. Find the signal, name the pattern, try the appro
 
 ## Index
 
+- [`cheatsheet.md`](cheatsheet.md): one-page signal → pattern recall for final review
 - [`methodology.md`](methodology.md): triage and team workflow
 - [`basics.md`](basics.md): shell, filesystem, curl lookup
 - [`cves.md`](cves.md): named CVEs and recent vulns challenges anchor on
-- Categories: [OSINT](categories/osint.md), [web](categories/web.md), [network forensics](categories/network-forensics.md), [crypto](categories/crypto.md), [file & disk forensics](categories/file-forensics.md), [stego](categories/stego.md), [reverse engineering](categories/reverse.md), [pwn](categories/pwn.md), [misc](categories/misc.md)
+- Categories: [OSINT](categories/osint.md), [web](categories/web.md), [network forensics](categories/network-forensics.md), [crypto](categories/crypto.md), [file & disk forensics](categories/file-forensics.md), [stego](categories/stego.md), [reverse engineering](categories/reverse.md), [pwn](categories/pwn.md), [misc](cheatsheet.md#misc--ctf-misc-skill)
 - [`tools.md`](tools.md): install checklist
 - [`writeups/`](writeups/): external writeups
 - [`event-briefer.md`](event-briefer.md): rules and scope
