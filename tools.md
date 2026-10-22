@@ -6,75 +6,119 @@ Base OS: [Kali](https://www.kali.org/docs/). Most tools below are preinstalled.
 
 ```sh
 sudo apt update && sudo apt install -y \
-  wireshark tshark binwalk foremost libimage-exiftool-perl pngcheck \
-  steghide zbar-tools john hashcat ffuf gobuster sqlmap seclists sherlock ghidra
+  wireshark tshark pcapfix aircrack-ng dnsutils whois nmap \
+  binwalk foremost sleuthkit autopsy libimage-exiftool-perl pngcheck \
+  poppler-utils fcrackzip p7zip-full \
+  steghide zbar-tools ffmpeg audacity sonic-visualiser \
+  john hashcat hashid ffuf gobuster sqlmap seclists sherlock \
+  ghidra radare2 gdb ltrace strace upx-ucl jadx apktool
 sudo gunzip /usr/share/wordlists/rockyou.txt.gz
 ```
 
-Not in apt: `pipx install pwntools volatility3`, `sudo gem install zsteg`, stegseek (`.deb`), [CyberChef](https://github.com/gchq/CyberChef/releases) (download zip), [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool) (git clone).
+Python: `pipx install pwntools volatility3 angr; pip install pycryptodome sympy gmpy2 z3-solver flask-unsign xortool oletools ROPgadget`
+Other: `sudo gem install zsteg one_gadget`, stegseek (`.deb`), [pwndbg](https://github.com/pwndbg/pwndbg) (gdb plugin), [StegSolve](http://www.caesum.com/handbook/Stegsolve.jar) (jar), [CyberChef](https://github.com/gchq/CyberChef/releases) (zip), [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool) (git clone).
 
 ## Triage
 
-| Tool                                           | What it does                                                       |
-| ---------------------------------------------- | ------------------------------------------------------------------ |
-| `file`                                         | Identify type by magic bytes                                       |
-| `strings`                                      | Dump printable strings                                             |
-| `xxd`                                          | Hex dump                                                           |
-| `binwalk`                                      | Find and extract embedded files                                    |
-| `foremost`                                     | Carve files by signature                                           |
-| `exiftool`                                     | Read and edit metadata                                             |
+| Tool | What it does |
+| --- | --- |
+| `file` | Identify type by magic bytes |
+| `strings` | Dump printable strings |
+| `xxd` | Hex dump |
+| `binwalk` | Find and extract embedded files |
+| `foremost` | Carve files by signature |
+| `exiftool` | Read and edit metadata |
 | [CyberChef](https://gchq.github.io/CyberChef/) | Browser multi-tool for encode, decode, decrypt; Magic auto-detects |
 
 ## OSINT
 
-| Tool                                        | What it does                    |
-| ------------------------------------------- | ------------------------------- |
-| `sherlock`                                  | Find a username across sites    |
-| `whois`                                     | Domain registration lookup      |
-| [crt.sh](https://crt.sh/)                   | Subdomains via certificate logs |
-| [Wayback Machine](https://web.archive.org/) | Archived page versions          |
-| [Google dorks](https://www.exploit-db.com/google-hacking-database) | `site:` `filetype:` `inurl:` `intitle:` operators to find exposed files and pages |
+| Tool | What it does |
+| --- | --- |
+| `sherlock` | Find a username across sites |
+| `whois` | Domain registration lookup |
+| `dig` | DNS record lookup (TXT, MX, CNAME) |
+| [crt.sh](https://crt.sh/) | Subdomains via certificate logs |
+| [Wayback Machine](https://web.archive.org/) | Archived page versions |
+| [Shodan](https://shodan.io/) | Internet host/service search |
+| [Google dorks](https://www.exploit-db.com/google-hacking-database) | `site:` `filetype:` `inurl:` `intitle:` to find exposed files/pages |
 
 ## Web
 
-| Tool       | What it does                                |
-| ---------- | ------------------------------------------- |
+| Tool | What it does |
+| --- | --- |
 | Burp Suite | Intercepting proxy; inspect and replay HTTP |
-| `ffuf`     | Fast fuzzer for dirs, files, params         |
-| `gobuster` | Directory and DNS brute force               |
-| `sqlmap`   | Automated SQL injection                     |
-| `curl`     | Scripted HTTP requests                      |
+| `ffuf` | Fast fuzzer for dirs, files, params |
+| `gobuster` | Directory and DNS brute force |
+| `sqlmap` | Automated SQL injection |
+| `curl` | Scripted HTTP requests |
+| `flask-unsign` | Crack and forge Flask session cookies |
 
 ## Network forensics
 
-| Tool      | What it does                      |
-| --------- | --------------------------------- |
-| Wireshark | GUI packet analysis               |
-| `tshark`  | CLI Wireshark; filter and extract |
+| Tool | What it does |
+| --- | --- |
+| Wireshark | GUI packet analysis |
+| `tshark` | CLI Wireshark; filter and extract |
+| `capinfos` | Summary of a capture (ships with Wireshark) |
+| `pcapfix` | Repair broken pcap files |
+| `aircrack-ng` | Crack WPA/WEP from a capture |
 
 ## Crypto
 
-| Tool                           | What it does                   |
-| ------------------------------ | ------------------------------ |
-| [dCode](https://www.dcode.fr/) | Cipher identifier and solvers  |
-| RsaCtfTool                     | Automated RSA attacks          |
-| `hashcat`                      | GPU hash cracking              |
-| `john`                         | CPU hash and password cracking |
+| Tool | What it does |
+| --- | --- |
+| [dCode](https://www.dcode.fr/) | Cipher identifier and solvers |
+| RsaCtfTool | Automated RSA attacks |
+| `hashid` | Identify a hash type |
+| `hashcat` | GPU hash cracking |
+| `john` | CPU hash and password cracking |
+| `xortool` | Recover repeating XOR keys |
+| pycryptodome / sympy / gmpy2 | Python crypto and number theory |
 
-## Stego and file forensics
+## File & disk forensics
 
-| Tool       | What it does                             |
-| ---------- | ---------------------------------------- |
+| Tool | What it does |
+| --- | --- |
+| Autopsy | GUI disk-image forensics |
+| Sleuth Kit (`mmls`/`fls`/`icat`) | CLI disk image: partitions, list, recover |
+| `fcrackzip` | Crack password-protected zips |
+| `7z` | Extract many archive formats |
+| `pdfinfo` / `pdftotext` | PDF metadata and text (poppler) |
+| `olevba` | Extract Office macros (oletools) |
+| Volatility 3 | Memory dump forensics |
+
+## Stego
+
+| Tool | What it does |
+| --- | --- |
+| [Aperi'Solve](https://www.aperisolve.com/) | Runs zsteg, steghide, binwalk, bit planes in one pass |
+| `zsteg` | LSB stego in PNG, BMP |
 | `steghide` | Hide/extract data in JPG, WAV (password) |
-| `stegseek` | Brute-force steghide passphrases         |
-| `zsteg`    | LSB stego in PNG, BMP                    |
-| `pngcheck` | Validate and inspect PNG chunks          |
-| `zbarimg`  | Decode QR and barcodes                   |
+| `stegseek` | Brute-force steghide passphrases |
+| StegSolve | Browse bit planes and color maps |
+| `zbarimg` | Decode QR and barcodes |
+| `pngcheck` | Validate and inspect PNG chunks |
+| `ffmpeg` | Split video frames, dump streams |
+| Audacity / Sonic Visualiser | Audio editing and spectrogram |
 
-## Reversing and pwn
+## Reverse engineering
 
-| Tool         | What it does                |
-| ------------ | --------------------------- |
-| Ghidra       | Disassembler and decompiler |
-| `pwntools`   | Python exploit framework    |
-| Volatility 3 | Memory dump forensics       |
+| Tool | What it does |
+| --- | --- |
+| Ghidra | Disassembler and decompiler |
+| `radare2` | CLI disassembler, debugger, patcher |
+| `gdb` + pwndbg | Dynamic analysis and debugging |
+| `ltrace` / `strace` | Trace library and system calls |
+| `upx` | Unpack UPX-packed binaries |
+| angr / z3 | Symbolic execution and constraint solving |
+| `jadx` / `apktool` | Decompile and unpack Android APKs |
+
+## Pwn
+
+| Tool | What it does |
+| --- | --- |
+| `pwntools` | Python exploit framework (`checksec`, `cyclic`, `ROP`) |
+| `gdb` + pwndbg | Debug and develop the exploit |
+| `ROPgadget` | Find ROP gadgets in a binary |
+| `one_gadget` | Find one-shot libc `execve` gadgets |
+| [libc.rip](https://libc.rip/) | Identify libc from leaked addresses |
